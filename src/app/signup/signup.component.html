@@ -1,0 +1,42 @@
+<div id="signup">
+  <h1>Sign Up for Free</h1>
+  <form [formGroup]="signupForm">
+    <div class="top-row">
+      <div class="field-wrap">
+        <label [ngClass]="signupForm.get('username').value !== '' ? 'active' : '' ">
+          First Name<span class="req">*</span>
+        </label>
+        <input type="text" name="username" autocomplete="off"
+               [formControl]="signupForm.get('username')">
+        <div *ngIf="signupForm.get('username').hasError('minLength')" class="error-text">
+          Note: {{'First name is short'}}</div>
+      </div>
+
+      <div class="field-wrap">
+        <label [ngClass]="signupForm.get('lastname').value !== '' ? 'active' : '' ">
+          Last Name<span class="req">*</span>
+        </label>
+        <input type="text" required autocomplete="off"
+               [formControl]="signupForm.get('lastname')">
+      </div>
+    </div>
+    <div class="field-wrap">
+      <label [ngClass]="signupForm.get('email').value !== '' ? 'active' : '' ">
+        Email Address<span class="req">*</span>
+      </label>
+      <input type="email" required autocomplete="off"
+             [formControl]="signupForm.get('email')">
+    </div>
+    <div class="field-wrap">
+      <label [ngClass]="signupForm.get('password').value !== '' ? 'active' : '' ">
+        Set A Password<span class="req">*</span>
+      </label>
+      <input type="password" required autocomplete="off"
+             [formControl]="signupForm.get('password')"/>
+    </div>
+    <button type="submit" class="button button-block" [disabled]="signupForm.invalid"
+            [ngClass]="signupForm.invalid ? 'button-disable' : ''"
+    >Get Started
+    </button>
+  </form>
+</div>
